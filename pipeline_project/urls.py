@@ -1,7 +1,7 @@
 
 from django.contrib import admin
 
-from django.contrib import admin
+
 from django.urls import path, include
 
 urlpatterns = [
@@ -12,6 +12,11 @@ urlpatterns = [
     path('api/ip_generate_with_one_click/', include('ip_generate_with_one_click.urls')),
     path('api/mail_generate_with_one_click/', include('mail_generate_with_one_click.urls')),
     path('api/phone_generate_with_one_click/', include('phone_generate_with_one_click.urls')),
+    path('api/mail_generate_and_message/', include('mail_generate_with_one_click.urls')),
+    path('api/mail-solution/', include('mail_solution.urls')),
+    path('api/web-accessor/', include('web_accessor.urls')),
+    path('api/mail-sender/', include('mail_sender.urls')),
 ]
+
 
 

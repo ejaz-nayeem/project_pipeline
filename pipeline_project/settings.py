@@ -14,12 +14,14 @@ SECRET_KEY = 'django-insecure-i0tm2*!fx@3u&dpj!d1t2jsw*sh2$t!$-u0!w9f949m@kd5$5h
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'd68b3d9bd9c8.ngrok-free.app', 
-    '127.0.0.1',
-    'localhost',
-    '10.10.13.99',
+"*",
 ]
+CORS_ALLOW_ALL_ORIGINS = True
 
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",   # frontend
+    "https://yourfrontenddomain.com",
+]
 
 # Application definition
 
@@ -31,18 +33,24 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'corsheaders',
     'ip_solution',
     'phone_solution',
     'email_solution',
     'ip_generate_with_one_click',
     'mail_generate_with_one_click',
     'phone_generate_with_one_click',
+    'mail_generate_and_message',
+    'mail_solution',
+    'web_accessor',
+    'mail_sender',
     
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -121,3 +129,10 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+MAILGUN_DOMAIN = os.environ.get('MAILGUN_DOMAIN')
+MAILGUN_WEBHOOK_SIGNING_KEY = os.environ.get('MAILGUN_WEBHOOK_SIGNING_KEY')
+MAILGUN_API_KEY = os.environ.get('MAILGUN_API_KEY')
+
+STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
+STRIPE_WEBHOOK_SECRET = os.environ.get('STRIPE_WEBHOOK_SECRET')
